@@ -1027,6 +1027,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 305812153, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 305812153, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 305812153, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 305812153, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 937654798, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4639169860195616848, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1139,8 +1159,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4639169861199345766, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
 --- !u!1 &836860691
 GameObject:
@@ -1250,32 +1269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &948108766 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3624893531626073775, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
-  m_PrefabInstance: {fileID: 2255163819436882502}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &948108776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948108766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a216e451265b5af45b873797902b2ff4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  lerpTime: 0
-  maxHealth: 100
-  chipSpeed: 2
-  DamageImage: {fileID: 1037012154}
-  HealthText: {fileID: 873659374}
-  frontHealthBar: {fileID: 2017439474}
-  backHealthBar: {fileID: 1532092353}
-  backHealthBarColor: {fileID: 2017439475}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,10 +1615,6 @@ PrefabInstance:
     - target: {fileID: 2125482136376158661, guid: 3e67e07ac0da05840a7fe7e3360cf908, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7718868211517958192, guid: 3e67e07ac0da05840a7fe7e3360cf908, type: 3}
-      propertyPath: ZombieSpeed
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e67e07ac0da05840a7fe7e3360cf908, type: 3}
@@ -2419,25 +2408,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 948108776, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
+      propertyPath: HealthText
+      value: 
+      objectReference: {fileID: 873659374}
+    - target: {fileID: 948108776, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
+      propertyPath: DamageImage
+      value: 
+      objectReference: {fileID: 1037012154}
+    - target: {fileID: 948108776, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
+      propertyPath: backHealthBar
+      value: 
+      objectReference: {fileID: 1532092353}
+    - target: {fileID: 948108776, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
+      propertyPath: frontHealthBar
+      value: 
+      objectReference: {fileID: 2017439474}
+    - target: {fileID: 948108776, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
+      propertyPath: backHealthBarColor
+      value: 
+      objectReference: {fileID: 2017439475}
     - target: {fileID: 3244217899656140014, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
       propertyPath: EnemySpawn
       value: 
       objectReference: {fileID: 279443694}
-    - target: {fileID: 3244217899656140014, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
-      propertyPath: DamageZombie
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624893531626073773, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
-      propertyPath: m_Mass
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 3624893531626073775, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
       propertyPath: m_Name
       value: PlayerOne
-      objectReference: {fileID: 0}
-    - target: {fileID: 3897871018137747444, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4108942962725925909, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
       propertyPath: m_RootOrder
@@ -2540,10 +2537,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieFirstManTwo
       objectReference: {fileID: 0}
-    - target: {fileID: 1996392928483717166, guid: 4c58bada6ca9d714a9e830cd2ff82f54, type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c58bada6ca9d714a9e830cd2ff82f54, type: 3}
 --- !u!1001 &6997351039884305239
@@ -2600,10 +2593,6 @@ PrefabInstance:
     - target: {fileID: 758780939011748858, guid: 486b89ffca7a93a4fb7d7718783ad62e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8430211586956783879, guid: 486b89ffca7a93a4fb7d7718783ad62e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 486b89ffca7a93a4fb7d7718783ad62e, type: 3}

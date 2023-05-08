@@ -109,6 +109,7 @@ MonoBehaviour:
   ZombieAttack: 10
   distance: 0
   ZombieHP: 100
+  ProjectileDamage: {fileID: 5387805029005391606, guid: 4995dc0fcc50c70488c6a3c9a211274c, type: 3}
   HealthBarPrefab: {fileID: 8552230814925864860, guid: c403e99c16637164baff9cb7da21da99, type: 3}
   ZombieAnimator: {fileID: 758780939011748857}
 --- !u!54 &758780939011748839

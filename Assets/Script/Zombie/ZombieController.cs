@@ -23,8 +23,8 @@ public class ZombieController : MonoBehaviour
     private bool zombieRage = false;
 
     private Vector3 downForce = new Vector3(0, -10f, 0);
-
-
+    private Transform _CameraTransform;
+    public GameObject ProjectileDamage;
     public GameObject HealthBarPrefab;
     private ZombieHealth _zombieHealth;
     public Animator ZombieAnimator;
@@ -43,7 +43,7 @@ public class ZombieController : MonoBehaviour
         _zombieHealth = healthBar.GetComponent<ZombieHealth>();
         _zombieHealth.Setup(transform);
         ZombieDeadPrefab = Resources.Load("Prefabs/Particle/ZombieDeadSmoke") as GameObject;
-        
+        _CameraTransform = Camera.main.transform;
         //
         PlayerDamage = FindObjectOfType<Player>().damage;
 
@@ -52,6 +52,7 @@ public class ZombieController : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(gameObject.transform.position, ZombieTarget.transform.position);
+        
         ZombieAttackTrigger();
     }
 
@@ -99,10 +100,12 @@ public class ZombieController : MonoBehaviour
                     case 1:
                         Debug.Log("CRIT");
                         TakeDamage(pistolDamage * 2);
+                        ProjectileDamageVision(pistolDamage);
                         break;
                     default:
                         Debug.Log("NotCrit");
                         TakeDamage(pistolDamage);
+                        ProjectileDamageVision(pistolDamage);
                         break;
                 }
             }
@@ -152,6 +155,14 @@ public class ZombieController : MonoBehaviour
         ZombieSpeed = 4;
     }
 
+    void ProjectileDamageVision(int pistolDamage)
+    {
+        Vector3 damagePos = new Vector3(transform.position.x, transform.position.y + 2.75f, transform.position.z);
+        
+        GameObject newProjectile = Instantiate(ProjectileDamage, damagePos, Quaternion.identity);
+        newProjectile.transform.LookAt(_CameraTransform.position);
+        ProjectileDamage.GetComponentInChildren<ProjectileDamageText>().Damage = pistolDamage;
+    }
     
 
     private void OnDestroy()
