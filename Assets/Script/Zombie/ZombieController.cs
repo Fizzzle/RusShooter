@@ -127,7 +127,6 @@ public class ZombieController : MonoBehaviour
         StartCoroutine(DamageSlow());
         if (ZombieHP <= 0)
         {
-            Instantiate(ZombieDeadPrefab,gameObject.transform);
             ZombieSpeed = 0;
             ZombieAnimator.SetTrigger("Hit");
             Destroy(ChildrenTexture);
@@ -162,6 +161,7 @@ public class ZombieController : MonoBehaviour
         GameObject newProjectile = Instantiate(ProjectileDamage, damagePos, Quaternion.identity);
         newProjectile.transform.LookAt(_CameraTransform.position);
         ProjectileDamage.GetComponentInChildren<ProjectileDamageText>().Damage = pistolDamage;
+        Destroy(newProjectile, 1f);
     }
     
 
