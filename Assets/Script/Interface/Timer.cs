@@ -6,11 +6,36 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    private int min = 0;
+    private int sec = 0;
     public Text TimerText;
+    private int delta = 1;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        TimerText.text = Time.fixedTime.ToString("00:00");
+        TimerText = GameObject.Find("Timer").GetComponent<Text>();
+        StartCoroutine(ITimer());
+    }
+    
+    IEnumerator ITimer()
+    {
+        while (true)
+        {
+            if (sec == 59)
+            {
+                min++;
+                sec = -1;
+                TimerText.color = Color.green;
+            }
+
+            if (sec == 0)
+            {
+                TimerText.color = Color.white;
+            }
+
+            sec += delta;
+            TimerText.text = min.ToString("D2") + ":" + sec.ToString("D2");
+            yield return new WaitForSeconds(1);
+        }
     }
 }

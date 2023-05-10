@@ -30,11 +30,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (EnemySpawn != null)
+        {
+            ClosestEnemy = EnemySpawn.GetAttackClosest(player.transform.position);
+        }
         
-        isShotCheck();
         
         // Ближайщие враги и сама атака
-        ClosestEnemy = EnemySpawn.GetAttackClosest(player.transform.position);
+        
         if (ClosestEnemy != null)
         {
             distance = Vector3.Distance(ClosestEnemy.transform.position, player.transform.position);
@@ -42,6 +46,7 @@ public class Player : MonoBehaviour
         }
 
 
+        isShotCheck();
         if (Input.GetMouseButton(0))
         {
             Attack();
