@@ -7,12 +7,6 @@ public class PocketLight : MonoBehaviour
 {
     public GameObject PocketFlashlight;
 
-    private void Start()
-    {
-        PocketFlashlight = GameObject.FindWithTag("PocketLight");
-        PocketFlashlight.SetActive(false);
-    }
-
 
     void Update()
     {

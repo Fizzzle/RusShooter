@@ -20,8 +20,16 @@ public class EnemySpawn : MonoBehaviour
     void Start()
     {
         EnemySpawnSetting();
-        
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            EnemySpawnSetting();
+        }
+    }
+
 
     public GameObject GetAttackClosest(Vector3 point)
     {
