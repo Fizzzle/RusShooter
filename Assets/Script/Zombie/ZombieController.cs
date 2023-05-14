@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.UI;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
@@ -94,13 +95,15 @@ public class ZombieController : MonoBehaviour
             if (collision.gameObject.GetComponent<BulletPistol>())
             {
                 int pistolDamage = collision.gameObject.GetComponent<BulletPistol>().DamageZombie + Random.Range(2, 5);
+                int pistolCritDamage;
                 int CritChance = Random.Range(0, 5);
                 switch (CritChance)
                 {
                     case 1:
                         Debug.Log("CRIT");
-                        TakeDamage(pistolDamage * 2);
-                        ProjectileDamageVision(pistolDamage);
+                        pistolCritDamage = pistolDamage * 2;
+                        TakeDamage(pistolCritDamage);
+                        ProjectileDamageVision(pistolCritDamage, 2);
                         break;
                     default:
                         Debug.Log("NotCrit");
@@ -154,11 +157,14 @@ public class ZombieController : MonoBehaviour
         ZombieSpeed = 4;
     }
 
-    void ProjectileDamageVision(int pistolDamage)
+    void ProjectileDamageVision(int pistolDamage, int index = 1)
     {
         Vector3 damagePos = new Vector3(transform.position.x, transform.position.y + 2.75f, transform.position.z);
-        
         GameObject newProjectile = Instantiate(ProjectileDamage, damagePos, Quaternion.identity);
+        if (index == 2)
+        {
+            newProjectile.GetComponentInChildren<TextMesh>().color = Color.red;
+        }
         newProjectile.transform.LookAt(_CameraTransform.position);
         ProjectileDamage.GetComponentInChildren<ProjectileDamageText>().Damage = pistolDamage;
         Destroy(newProjectile, 1f);
