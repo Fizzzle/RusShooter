@@ -123,6 +123,22 @@ public class ZombieController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "FloodLight")
+        {
+            StartCoroutine(SleepOfFloodLight());
+        }
+    }
+
+    IEnumerator SleepOfFloodLight()
+    {
+        ZombieAnimator.SetTrigger("Hit");
+        ZombieSpeed = 0;
+        yield return new WaitForSeconds(2);
+        StartCoroutine(ZombieRage());
+    }
+
     public void TakeDamage(int ZombieDamage)
     {
         ZombieHP -= ZombieDamage;
@@ -153,7 +169,7 @@ public class ZombieController : MonoBehaviour
     IEnumerator ZombieRage()
     {
         zombieRage = true;
-        ZombieSpeed = 5;
+        ZombieSpeed = 6;
         yield return new WaitForSeconds(5);
         zombieRage = false;
         ZombieSpeed = 4;
