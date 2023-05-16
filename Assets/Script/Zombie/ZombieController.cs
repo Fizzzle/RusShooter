@@ -43,7 +43,7 @@ public class ZombieController : MonoBehaviour
         GameObject healthBar = Instantiate(HealthBarPrefab);
         _zombieHealth = healthBar.GetComponent<ZombieHealth>();
         _zombieHealth.Setup(transform);
-        ZombieDeadPrefab = Resources.Load("Prefabs/Particle/ZombieDeadSmoke") as GameObject;
+        ZombieDeadPrefab = Resources.Load("Prefabs/Particle/ZombieDead") as GameObject;
         _CameraTransform = Camera.main.transform;
         //
         PlayerDamage = FindObjectOfType<Player>().damage;
@@ -130,10 +130,12 @@ public class ZombieController : MonoBehaviour
         StartCoroutine(DamageSlow());
         if (ZombieHP <= 0)
         {
+            GameObject ZombieDead = Instantiate(ZombieDeadPrefab, transform.position, Quaternion.identity);
             ZombieSpeed = 0;
             ZombieAnimator.SetTrigger("Hit");
             Destroy(ChildrenTexture);
-            Destroy(gameObject, 0.5f);
+            Destroy(gameObject);
+            Destroy(ZombieDead, 1f);
         }
     }
 
