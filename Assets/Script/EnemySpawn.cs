@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -13,6 +14,10 @@ public class EnemySpawn : MonoBehaviour
     public List<GameObject> listEnemy = new List<GameObject>();
     public GameObject Zombies;
     public Vector3[] SpawnPosition;
+    public int WavesCount = 2;
+    private bool isWaveRunning = false;
+    public int WavesCountText = 1;
+    
 
     [Header("Count Enemy")]
     public int enemyCountLVL = 2;
@@ -20,14 +25,33 @@ public class EnemySpawn : MonoBehaviour
     void Start()
     {
         Player = GameObject.FindWithTag("Player").transform;
-        EnemySpawnSetting();
+         EnemySpawnSetting();
     }
 
-    private void Update()
+    private IEnumerator WavesCoroutine()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (isWaveRunning)
+            yield break;
+
+        isWaveRunning = true;
+
+        while (listEnemy.Count == 0)
         {
-            EnemySpawnSetting();
+            yield return new WaitForSeconds(2);
+            WavesCount++;
+            WavesCountText++;
+            Debug.Log(listEnemy.Count);
+            WavesEnemy();
+        }
+
+        isWaveRunning = false;
+    }
+    
+    void WavesEnemy()
+    {
+        for (int i = 0; i <= WavesCount; i++)
+        {
+             EnemySpawnSetting();
         }
     }
 
@@ -39,8 +63,10 @@ public class EnemySpawn : MonoBehaviour
             Vector3 CurrentSpawnPosition = SpawnPosition[Random.Range(0, SpawnPosition.Length)];
             float SpawnDistance =  Vector3.Distance(CurrentSpawnPosition, Player.transform.position);
             bool GetSpawn = true;
-            if (SpawnDistance > 50)
+            int checkFatalErrorWhile = 1;
+            if (SpawnDistance > 20)
             {
+                
                 transform.position = CurrentSpawnPosition;
             }
             else
@@ -49,10 +75,17 @@ public class EnemySpawn : MonoBehaviour
                 {
                     CurrentSpawnPosition = SpawnPosition[Random.Range(0, SpawnPosition.Length)];
                     SpawnDistance = Vector3.Distance(CurrentSpawnPosition, Player.transform.position);
+                    checkFatalErrorWhile++;
                     if (SpawnDistance > 50)
                     {
                         transform.position = CurrentSpawnPosition;
                         GetSpawn = false;
+                    }
+
+                    if (checkFatalErrorWhile >= 50)
+                    {
+                        GetSpawn = false;
+                        Debug.Log("Невозможно заспавнить");
                     }
                 }
             }
@@ -79,7 +112,14 @@ public class EnemySpawn : MonoBehaviour
             {
                 listEnemy.RemoveAt(i);
             }
-            
+        }
+
+        if (listEnemy.Count == 0)
+        {
+            if (!isWaveRunning)
+            { 
+                StartCoroutine(WavesCoroutine());
+            }
         }
 
         return closestEnemy;

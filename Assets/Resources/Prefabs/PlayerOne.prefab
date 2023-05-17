@@ -1253,7 +1253,6 @@ GameObject:
   - component: {fileID: 4108942962725925909}
   - component: {fileID: 3624893531626073772}
   - component: {fileID: 3624893531626073773}
-  - component: {fileID: 5437443343595876573}
   - component: {fileID: 3624893531626073771}
   - component: {fileID: 3624893531626073770}
   - component: {fileID: 3244217899656140014}
@@ -1317,18 +1316,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!75 &5437443343595876573
-ConstantForce:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3624893531626073775}
-  m_Enabled: 1
-  m_Force: {x: 0, y: -999, z: 0}
-  m_RelativeForce: {x: 0, y: 0, z: 0}
-  m_Torque: {x: 0, y: 0, z: 0}
-  m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!95 &3624893531626073771
 Animator:
   serializedVersion: 5
