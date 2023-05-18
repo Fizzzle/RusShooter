@@ -1089,6 +1089,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4639169860571023413, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4639169861860363642, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
       propertyPath: m_Name
       value: GameInterface
@@ -2314,6 +2318,10 @@ PrefabInstance:
       propertyPath: backHealthBarColor
       value: 
       objectReference: {fileID: 2017439475}
+    - target: {fileID: 3068808951158742569, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
+      propertyPath: m_Force.y
+      value: -9999
+      objectReference: {fileID: 0}
     - target: {fileID: 3244217899656140014, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
       propertyPath: EnemySpawn
       value: 
@@ -2366,7 +2374,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3068808951158742569, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cd6bc3e3e5f97e34c82ffd530b6b9e64, type: 3}
 --- !u!1001 &7350221018724382443
 PrefabInstance:
