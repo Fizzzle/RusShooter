@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -52,8 +54,11 @@ public class Player : MonoBehaviour
             Attack();
         }
         StopAttack();
+
+        
     }
-    
+
+
     IEnumerator shoot()
     {
         if (target)
@@ -142,10 +147,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    void ShotSounds()
+    public void ShotSounds()
     {
         ShotSound.pitch = (Random.Range(0.85f, 1f));
         ShotSound.Play();
     }
     
+
 }

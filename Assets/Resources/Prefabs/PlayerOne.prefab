@@ -1256,6 +1256,7 @@ GameObject:
   - component: {fileID: 3624893531626073771}
   - component: {fileID: 3624893531626073770}
   - component: {fileID: 3244217899656140014}
+  - component: {fileID: 3953525843184033969}
   - component: {fileID: 8819457970868138286}
   - component: {fileID: 1205697298}
   - component: {fileID: 948108776}
@@ -1376,6 +1377,18 @@ MonoBehaviour:
   damage: 25
   distanceAttack: 11
   ShotPeriod: 0.5
+--- !u!114 &3953525843184033969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624893531626073775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22e366a3126d29a45b3e1c6dfba2ebfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8819457970868138286
 MonoBehaviour:
   m_ObjectHideFlags: 0
