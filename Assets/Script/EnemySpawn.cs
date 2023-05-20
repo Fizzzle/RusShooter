@@ -11,6 +11,7 @@ public class EnemySpawn : MonoBehaviour
     [Header("LVL Settings")] 
     public Transform Player;
      public GameObject[] enemy1;
+     public GameObject[] enemyBig;
     public List<GameObject> listEnemy = new List<GameObject>();
     public GameObject Zombies;
     public Vector3[] SpawnPosition;
@@ -21,6 +22,8 @@ public class EnemySpawn : MonoBehaviour
 
     [Header("Count Enemy")]
     public int enemyCountLVL = 2;
+
+    public int enemyBigCountLVL = 1; 
     // Start is called before the first frame update
     void Start()
     {
@@ -125,6 +128,14 @@ public class EnemySpawn : MonoBehaviour
         return closestEnemy;
     }
 
+    void enemyBigCount()
+    {
+        enemyBig = new GameObject[3];
+        enemyBig[0] = Resources.Load("Prefabs/ZombiePunching") as GameObject;
+        enemyBig[1] = Resources.Load("Prefabs/ZombieRunner") as GameObject;
+        enemyBig[2] = Resources.Load("Prefabs/ZombieRunnerFemale") as GameObject;
+    }
+    
     void enemy1Count()
     {
         enemy1 = new GameObject[3];
@@ -137,10 +148,17 @@ public class EnemySpawn : MonoBehaviour
     {
         SpawnPositionVector();
         enemy1Count();
+        enemyBigCount();
         for (int i = 0; i < enemyCountLVL; i++)
         {
             Vector3 Position = new Vector3( transform.position.x, transform.position.y + Random.Range(1f, 3f),transform.position.z);
             GameObject Enemy = Instantiate(enemy1[Random.Range(0,3)], Position, Quaternion.identity);
+        }
+
+        for (int i = 0; i < enemyBigCountLVL; i++)
+        {
+            Vector3 Position = new Vector3( transform.position.x, transform.position.y + Random.Range(1f, 3f),transform.position.z);
+            GameObject Enemy = Instantiate(enemyBig[Random.Range(0,3)], Position, Quaternion.identity);
         }
     }
 }
