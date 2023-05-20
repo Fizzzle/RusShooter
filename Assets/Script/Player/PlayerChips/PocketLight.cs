@@ -16,7 +16,7 @@ public class PocketLight : MonoBehaviour
         }
     }
     
-    void PocketFlashlightCheck()
+    public void PocketFlashlightCheck()
     {
         if (PocketFlashlight.active == true)
         {

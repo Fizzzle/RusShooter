@@ -35,7 +35,7 @@ public class Slowdown : MonoBehaviour
         _isSlow = false;
     }
 
-    void TimeSlowDown()
+    public void TimeSlowDown()
     {
         if (_isSlow)
         {

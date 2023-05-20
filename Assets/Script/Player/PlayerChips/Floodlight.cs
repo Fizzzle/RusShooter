@@ -18,7 +18,7 @@ public class Floodlight : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E))
         {
-            StartCoroutine(FloodLightSkill());
+            FloodLighting();
         }
     }
 
@@ -30,6 +30,11 @@ public class Floodlight : MonoBehaviour
         }
     }
 
+    public void FloodLighting()
+    {
+        StartCoroutine(FloodLightSkill());
+    }
+    
     IEnumerator FloodLightSkill()
     {
         FlooLightObject.SetActive(true);
