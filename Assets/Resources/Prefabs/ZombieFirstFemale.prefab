@@ -136,9 +136,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2125482136376158661}
   - component: {fileID: 5449098716086432703}
-  - component: {fileID: 7718868211517958192}
-  - component: {fileID: 7718868211517958194}
+  - component: {fileID: 4489228767417466347}
   - component: {fileID: 7718868211517958193}
+  - component: {fileID: 7718868211517958194}
+  - component: {fileID: 7718868211517958192}
   m_Layer: 0
   m_Name: ZombieFirstFemale
   m_TagString: Enemy
@@ -184,29 +185,42 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &7718868211517958192
-MonoBehaviour:
+--- !u!195 &4489228767417466347
+NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600161128398451583}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c32c53d4f6895a2429adbdbe4b3b7d91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ZombieTarget: {fileID: 0}
-  zombieTarget: {fileID: 0}
-  ZombieDeadPrefab: {fileID: 0}
-  ChildrenTexture: {fileID: 6522040043539883917}
-  ZombieSpeed: 4
-  ZombieAttack: 10
-  distance: 0
-  ZombieHP: 100
-  ProjectileDamage: {fileID: 5387805029005391606, guid: 4995dc0fcc50c70488c6a3c9a211274c, type: 3}
-  HealthBarPrefab: {fileID: 8552230814925864860, guid: c403e99c16637164baff9cb7da21da99, type: 3}
-  ZombieAnimator: {fileID: 5449098716086432703}
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 4
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!136 &7718868211517958193
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600161128398451583}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3123528
+  m_Height: 1.8120054
+  m_Direction: 1
+  m_Center: {x: -0.0063947043, y: 0.75745606, z: 0.1568034}
 --- !u!54 &7718868211517958194
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -223,20 +237,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 32
   m_CollisionDetection: 0
---- !u!136 &7718868211517958193
-CapsuleCollider:
+--- !u!114 &7718868211517958192
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600161128398451583}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3123528
-  m_Height: 1.8120054
-  m_Direction: 1
-  m_Center: {x: -0.0063947043, y: 0.75745606, z: 0.1568034}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32c53d4f6895a2429adbdbe4b3b7d91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ZombieTarget: {fileID: 0}
+  zombieTarget: {fileID: 0}
+  ZombieDeadPrefab: {fileID: 0}
+  ChildrenTexture: {fileID: 6522040043539883917}
+  NavAgent: {fileID: 4489228767417466347}
+  ZombieSpeed: 4
+  ZombieRageSpeed: 6
+  ZombieAttack: 10
+  distance: 0
+  ZombieHP: 100
+  ProjectileDamage: {fileID: 5387805029005391606, guid: 4995dc0fcc50c70488c6a3c9a211274c, type: 3}
+  HealthBarPrefab: {fileID: 8552230814925864860, guid: c403e99c16637164baff9cb7da21da99, type: 3}
+  ZombieAnimator: {fileID: 5449098716086432703}
 --- !u!1 &1604510180866938985
 GameObject:
   m_ObjectHideFlags: 0

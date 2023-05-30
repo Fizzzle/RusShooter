@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
@@ -14,14 +15,17 @@ public class ZombieController : MonoBehaviour
     public Transform zombieTarget;
     public GameObject ZombieDeadPrefab;
     public GameObject ChildrenTexture;
+    public NavMeshAgent NavAgent;
     
     private Rigidbody rb;
     public float ZombieSpeed = 4f;
+    public float ZombieRageSpeed = 6f;
     public int ZombieAttack = 10;
     public float distance;
     public int ZombieHP = 100;
     private int ZombiemaxHP;
     private bool zombieRage = false;
+   
 
     private Vector3 downForce = new Vector3(0, -10f, 0);
     private Transform _CameraTransform;
@@ -48,6 +52,8 @@ public class ZombieController : MonoBehaviour
         //
         PlayerDamage = FindObjectOfType<Player>().damage;
 
+        
+        StartCoroutine(FollowTarget());
     }
 
     void Update()
@@ -55,12 +61,14 @@ public class ZombieController : MonoBehaviour
         distance = Vector3.Distance(gameObject.transform.position, ZombieTarget.transform.position);
         
         ZombieAttackTrigger();
+        
     }
-
+    
     private void FixedUpdate()
     {
         ZombieMoveLookRb();
     }
+    
 
     public void ZombieAttackTrigger()
     {
@@ -84,8 +92,7 @@ public class ZombieController : MonoBehaviour
         rb.MoveRotation(lookRotation);
 
         // Двигаем объект к цели через Rigidbody
-        rb.MovePosition(transform.position + directionXZ * ZombieSpeed * Time.deltaTime);
-        rb.AddForce(downForce, ForceMode.Acceleration);
+        
     }
     
     private void OnCollisionEnter(Collision collision)
@@ -134,7 +141,7 @@ public class ZombieController : MonoBehaviour
     IEnumerator SleepOfFloodLight()
     {
         ZombieAnimator.SetTrigger("Hit");
-        ZombieSpeed = 0;
+        NavAgent.speed = 0;
         yield return new WaitForSeconds(2);
         StartCoroutine(ZombieRage());
     }
@@ -143,11 +150,16 @@ public class ZombieController : MonoBehaviour
     {
         ZombieHP -= ZombieDamage;
         _zombieHealth.SetHealth(ZombieHP, ZombiemaxHP);
-        StartCoroutine(DamageSlow());
+        int HitRandom = Random.Range(0, 3);
+        if (HitRandom == 1)
+        {
+            StartCoroutine(DamageSlow());
+        }
+        
         if (ZombieHP <= 0)
         {
             GameObject ZombieDead = Instantiate(ZombieDeadPrefab, transform.position, Quaternion.identity);
-            ZombieSpeed = 0;
+            NavAgent.speed = 0;
             ZombieAnimator.SetTrigger("Hit");
             Destroy(ChildrenTexture);
             Destroy(gameObject);
@@ -159,7 +171,7 @@ public class ZombieController : MonoBehaviour
     {
         if (!zombieRage)
         {
-            ZombieSpeed = 0;
+            NavAgent.speed  = 0;
             ZombieAnimator.SetTrigger("Hit");
             yield return new WaitForSeconds(2);
             StartCoroutine(ZombieRage());
@@ -169,10 +181,10 @@ public class ZombieController : MonoBehaviour
     IEnumerator ZombieRage()
     {
         zombieRage = true;
-        ZombieSpeed = 6;
+        NavAgent.speed = ZombieRageSpeed;
         yield return new WaitForSeconds(5);
         zombieRage = false;
-        ZombieSpeed = 4;
+        NavAgent.speed = ZombieSpeed;
     }
 
     void ProjectileDamageVision(int pistolDamage, int index = 1)
@@ -188,6 +200,55 @@ public class ZombieController : MonoBehaviour
         Destroy(newProjectile, 1f);
     }
     
+    public void ZombieWalk()
+    {
+        if (ZombieTarget != null)
+        {
+            StartCoroutine(Waiting());
+            NavAgent.SetDestination(zombieTarget.transform.position);
+        }
+    }
+
+    IEnumerator Waiting()
+    {
+        yield return new WaitForSeconds(0.3f);
+    }
+    
+    // GPT
+    private IEnumerator FollowTarget()
+    {
+        while (true)
+        {
+            Vector3 targetPosition = zombieTarget.position;
+            if (IsOnNavMesh(targetPosition))
+            {
+                NavAgent.SetDestination(targetPosition);
+            }
+            else
+            {
+                Vector3 nearestNavMeshPosition = FindNearestNavMeshPosition(targetPosition);
+                NavAgent.SetDestination(nearestNavMeshPosition);
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    private bool IsOnNavMesh(Vector3 position)
+    {
+        NavMeshHit hit;
+        return NavMesh.SamplePosition(position, out hit, 1f, NavMesh.AllAreas);
+    }
+
+    private Vector3 FindNearestNavMeshPosition(Vector3 position)
+    {
+        NavMeshHit hit;
+        NavMesh.SamplePosition(position, out hit, 100f, NavMesh.AllAreas);
+        return hit.position;
+    }
+    
+    
+    // gpt
 
     private void OnDestroy()
     {

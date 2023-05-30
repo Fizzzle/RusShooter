@@ -149,6 +149,8 @@ public class EnemySpawn : MonoBehaviour
         SpawnPositionVector();
         enemy1Count();
         enemyBigCount();
+        int spawnIndex = 0; // Индекс текущей точки спавна
+        
         for (int i = 0; i < enemyCountLVL; i++)
         {
             Vector3 Position = new Vector3( transform.position.x, transform.position.y + Random.Range(1f, 3f),transform.position.z);

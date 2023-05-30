@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 758780939011748858}
   - component: {fileID: 758780939011748857}
+  - component: {fileID: 2355617334964411841}
   - component: {fileID: 758780939011748838}
   - component: {fileID: 758780939011748839}
   - component: {fileID: 758780939011748856}
@@ -89,6 +90,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!195 &2355617334964411841
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129596768233040192}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 4
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &758780939011748838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,7 +128,9 @@ MonoBehaviour:
   zombieTarget: {fileID: 0}
   ZombieDeadPrefab: {fileID: 0}
   ChildrenTexture: {fileID: 8430211586956783879}
-  ZombieSpeed: 3
+  NavAgent: {fileID: 2355617334964411841}
+  ZombieSpeed: 4
+  ZombieRageSpeed: 6
   ZombieAttack: 10
   distance: 0
   ZombieHP: 100

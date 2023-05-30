@@ -35,7 +35,15 @@ public class Slowdown : MonoBehaviour
         _isSlow = false;
     }
 
-    public void TimeSlowDown()
+    public void SlowDownOn()
+    {
+        if (_isSlow)
+        {
+            StartCoroutine(SlowTimeMode());
+        }
+    }
+
+    void TimeSlowDown()
     {
         if (_isSlow)
         {

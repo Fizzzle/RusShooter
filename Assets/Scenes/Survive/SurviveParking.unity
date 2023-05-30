@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: aa60a43975a482c448e78a3011585073, type: 2}
 --- !u!1001 &1660099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3431,6 +3431,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4639169860571023413, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639169860571023413, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4639169861860363642, guid: f637e4a580c6a2641a8e545aa810b41f, type: 3}
