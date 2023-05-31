@@ -42,6 +42,10 @@ public class EnemySpawn : MonoBehaviour
         {
             yield return new WaitForSeconds(2);
             WavesCount++;
+            if (WavesCountText > 3)
+            {
+                enemyBigCountLVL++;
+            }
             WavesCountText++;
             Debug.Log(listEnemy.Count);
             WavesEnemy();
@@ -157,10 +161,15 @@ public class EnemySpawn : MonoBehaviour
             GameObject Enemy = Instantiate(enemy1[Random.Range(0,3)], Position, Quaternion.identity);
         }
 
-        for (int i = 0; i < enemyBigCountLVL; i++)
+        if (WavesCountText >= 3)
         {
-            Vector3 Position = new Vector3( transform.position.x, transform.position.y + Random.Range(1f, 3f),transform.position.z);
-            GameObject Enemy = Instantiate(enemyBig[Random.Range(0,3)], Position, Quaternion.identity);
+            for (int i = 0; i < enemyBigCountLVL; i++)
+            {
+                Vector3 Position = new Vector3( transform.position.x, transform.position.y + Random.Range(1f, 3f),transform.position.z);
+                GameObject Enemy = Instantiate(enemyBig[Random.Range(0,3)], Position, Quaternion.identity);
+            }
         }
+
+        
     }
 }
